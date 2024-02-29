@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sudo systemctl stop ssh
-sudo apt-get remove --purge openssh-server openssh-client
+sudo apt remove --purge openssh-server openssh-client
 sudo rm -rf /etc/ssh
 sudo rm -rf /home/*/.ssh
 
