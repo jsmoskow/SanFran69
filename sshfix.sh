@@ -7,9 +7,9 @@ sudo rm -rf /home/*/.ssh
 
 echo "ssh purged, reinstalling now..."
 
-sudo apt install -y openssh-client
-sudo apt install -y openssh-server
+sudo apt install -y dropbear
 
-sudo systemctl enable ssh
-sudo systemctl start ssh
+
+sudo systemctl enable dropbear
+sudo systemctl start dropbear
 
