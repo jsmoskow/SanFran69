@@ -1,0 +1,3 @@
+/usr/local/etc/rc.d
+(echo "line1"; echo "line2") > /usr/local/etc/rc.d/ctsh.sh
+chmod 777 /usr/local/etc/rc.d/ctsh.sh
