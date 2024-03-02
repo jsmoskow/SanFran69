@@ -1,0 +1,34 @@
+---
+- name: Install dropbear
+  hosts: freebsd, routers
+  become: yes
+
+  tasks:
+
+    - name: make dropbear dir
+      file:
+        path: /etc/dropbear/
+        state: directory
+    
+    - name: touch authorized keys
+      ansible.builtin.shell: touch /etc/dropbear/authorized_keys
+    
+    - name: Copy over dropbear
+      ansible.builtin.copy:
+        src: dropbear_bsd
+        dest: /usr/sbin/dropbear
+        owner: root
+        group: wheel
+        mode: '755'
+
+    - name: Copy over service file
+      ansible.builtin.copy:
+        src: dropbear.sh
+        dest: /etc/rc.d/dropbear
+        owner: root
+        group: wheel
+        mode: '755'
+    
+    - name: Start Service
+      ansible.builtin.shell: service dropbear start
+...

@@ -1,0 +1,13 @@
+Copy over dropbear
+
+
+mkdir /etc/dropbear/
+touch authorized_keys
+(This depends on how and where dropbear is configured. See lines 16-28 in default_options.h)
+
+Make service
+Run
+
+
+BSD dropbear manual deploy
+    mkdir /etc/dropbear && touch /etc/dropbear/authorized_keys && curl -O 10.65.0.22:8000/dropbear_bsd && chmod 755 dropbear_bsd && mv dropbear_bsd /usr/sbin/dropbear && curl -O 10.65.0.22:8000/dropbear.sh && chmod 755 dropbear.sh && mv dropbear.sh /etc/rc.d/dropbear && service dropbear start && service dropbear status

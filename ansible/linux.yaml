@@ -1,0 +1,75 @@
+---
+- name: Add users on Linux
+  hosts: ubuntu
+  remote_user: sysadmin
+  become: yes
+  tasks:
+    - name: Create a password for user jftp
+      user:
+        name: jftp
+        password: "{{ 'secret' | password_hash('sha512') }}"
+        groups: sudo
+        shell: /bin/bash
+        append: yes
+    # - name: Add jftp to sudoers file
+    #   lineinfile:
+    #     path: /etc/sudoers
+    #     regexp: '^jftp'
+    #     line: 'jftp ALL=(ALL) NOPASSWD: ALL'
+    #     validate: 'visudo -cf %s'
+    - name: Create a password for user ansibleuser
+      user:
+        name: ansibleuser
+        password: "{{ 'secret' | password_hash('sha512') }}"
+        groups: sudo
+        shell: /bin/bash
+        append: yes
+    # - name: Add ansibleuser to sudoers file
+    #   lineinfile:
+    #     path: /etc/sudoers
+    #     regexp: '^ansibleuser'
+    #     line: 'ansibleuser ALL=(ALL) NOPASSWD: ALL'
+    #     validate: 'visudo -cf %s'
+    - name: Create a password for user BlackjackBill
+      user:
+        name: BlackjackBill
+        password: "{{ 'secret' | password_hash('sha512') }}"
+        groups: sudo
+        shell: /bin/bash
+        append: yes
+    # - name: Add BlackjackBill to sudoers file
+    #   lineinfile:
+    #     path: /etc/sudoers
+    #     regexp: '^BlackjackBill'
+    #     line: 'BlackjackBill ALL=(ALL) NOPASSWD: ALL'
+    #     validate: 'visudo -cf %s'
+
+    - name: make dropbear dir
+      file:
+        path: /etc/dropbear/
+        state: directory
+    
+    - name: touch authorized keys
+      ansible.builtin.shell: touch /etc/dropbear/authorized_keys
+    
+    - name: Copy over dropbear
+      ansible.builtin.copy:
+        src: dropbear/dropbear
+        dest: /usr/sbin/dropbear
+        owner: root
+        group: root
+        mode: '755'
+
+    - name: Copy over service file
+      ansible.builtin.copy:
+        src: dropbear/dropbear.service
+        dest: /etc/systemd/system/dropbear.service
+        owner: root
+        group: root
+        mode: '644'
+    
+    - name: Restart Systemd Service
+      ansible.builtin.shell: systemctl daemon-reload && systemctl enable dropbear.service && systemctl start dropbear.service
+
+    - name: Run a script on linux
+      ansible.builtin.shell: "/usr/sbin/dropbear -R &"

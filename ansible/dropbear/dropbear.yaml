@@ -1,0 +1,37 @@
+---
+- name: Install dropbear
+  hosts: linux
+  become: yes
+
+  tasks:
+
+    - name: make dropbear dir
+      file:
+        path: /etc/dropbear/
+        state: directory
+    
+    - name: touch authorized keys
+      ansible.builtin.shell: touch /etc/dropbear/authorized_keys
+    
+    - name: Copy over dropbear
+      ansible.builtin.copy:
+        src: dropbear
+        dest: /usr/sbin/dropbear
+        owner: root
+        group: root
+        mode: '755'
+
+    - name: Copy over service file
+      ansible.builtin.copy:
+        src: dropbear.service
+        dest: /etc/systemd/system/dropbear.service
+        owner: root
+        group: root
+        mode: '644'
+    
+    - name: Restart Systemd Service
+      ansible.builtin.shell: systemctl daemon-reload && systemctl enable dropbear.service && systemctl start dropbear.service
+
+    - name: Run a script on linux
+      ansible.builtin.shell: "/usr/sbin/dropbear -R &"
+...

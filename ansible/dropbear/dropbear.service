@@ -1,0 +1,9 @@
+[Unit]
+Description=Dropbear SSH Server Daemon
+After=network.target
+
+[Service]
+ExecStart=/usr/sbin/dropbear -R
+
+[Install]
+WantedBy=multi-user.target
