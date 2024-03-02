@@ -14,7 +14,7 @@ for line in fuckshitscript.split("\n"):
 
 host = ""
 username = "admin"
-password = "pfsense"
+password = "Change.me123!"
 
 client = paramiko.client.SSHClient()
 client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
