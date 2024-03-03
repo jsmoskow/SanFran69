@@ -1,0 +1,201 @@
+# easyrule <action> <interface> <parameters>
+# easyrule pass <interface> <protocol> <source address> <destination address> [destination port]
+# easyrule block <interface> <source address>
+
+pfctl -Fa
+
+# normal rules
+easyrule pass wan tcp * 192.168.9.4
+easyrule pass wan tcp * 192.168.9.3
+easyrule pass wan tcp * 192.168.9.2
+easyrule pass wan tcp * 192.168.9.1
+easyrule pass wan tcp * 10.9.1.7 389
+easyrule pass wan tcp * 10.9.1.4 22
+easyrule pass wan tcp * 10.9.1.9 389
+easyrule pass wan tcp * 10.9.1.6 389
+easyrule pass wan tcp * 10.9.1.3 25
+easyrule pass wan tcp * 10.9.1.3 143
+easyrule pass wan tcp * 10.9.1.1 22
+easyrule block wan *
+
+
+# ----- datadog allow bullshit -----
+easyrule pass lan any * 34.149.66.128/26
+easyrule pass lan any * 34.160.125.158/32
+easyrule pass lan any * 35.190.51.116/32
+easyrule pass lan any * 34.149.66.128/26
+easyrule pass lan any * 34.149.119.85/32
+easyrule pass lan any * 34.149.203.90/32
+easyrule pass lan any * 34.110.187.75/32
+easyrule pass lan any * 34.117.129.254/32
+easyrule pass lan any * 34.149.66.128/26
+easyrule pass lan any * 34.149.66.131/32
+easyrule pass lan any * 34.110.187.75/32
+easyrule pass lan any * 34.117.129.254/32
+easyrule pass lan any * 34.149.54.227/32
+easyrule pass lan any * 34.149.66.128/26
+easyrule pass lan any * 34.149.66.131/32
+easyrule pass lan any * 34.149.119.85/32
+easyrule pass lan any * 34.149.203.90/32
+easyrule pass lan any * 34.160.7.29/32
+easyrule pass lan any * 34.160.40.115/32
+easyrule pass lan any * 34.160.41.148/32
+easyrule pass lan any * 34.160.125.158/32
+easyrule pass lan any * 34.160.150.109/32
+easyrule pass lan any * 35.190.51.116/32
+easyrule pass lan any * 35.244.255.175/32
+easyrule pass lan any * 34.149.54.227/32
+easyrule pass lan any * 34.149.66.128/26
+easyrule pass lan any * 34.160.7.29/32
+easyrule pass lan any * 34.149.66.128/26
+easyrule pass lan any * 34.160.41.148/32
+easyrule pass lan any * 34.160.150.109/32
+easyrule pass lan any * 34.160.40.115/32
+easyrule pass lan any * 35.244.255.175/32
+easyrule pass lan any * 3.1.36.99/32
+easyrule pass lan any * 3.1.219.207/32
+easyrule pass lan any * 3.18.172.189/32
+easyrule pass lan any * 3.18.188.104/32
+easyrule pass lan any * 3.18.197.0/32
+easyrule pass lan any * 3.36.177.119/32
+easyrule pass lan any * 3.92.150.182/32
+easyrule pass lan any * 3.96.7.126/32
+easyrule pass lan any * 3.120.223.25/32
+easyrule pass lan any * 3.121.24.234/32
+easyrule pass lan any * 13.48.150.244/32
+easyrule pass lan any * 13.48.239.118/32
+easyrule pass lan any * 13.48.254.37/32
+easyrule pass lan any * 13.54.169.48/32
+easyrule pass lan any * 13.114.211.96/32
+easyrule pass lan any * 13.115.46.213/32
+easyrule pass lan any * 13.126.169.175/32
+easyrule pass lan any * 13.208.126.217/32
+easyrule pass lan any * 13.208.133.55/32
+easyrule pass lan any * 13.208.255.200/32
+easyrule pass lan any * 13.209.118.42/32
+easyrule pass lan any * 13.209.230.111/32
+easyrule pass lan any * 13.234.54.8/32
+easyrule pass lan any * 13.236.246.161/32
+easyrule pass lan any * 13.238.14.57/32
+easyrule pass lan any * 13.244.85.86/32
+easyrule pass lan any * 13.244.188.203/32
+easyrule pass lan any * 13.245.200.254/32
+easyrule pass lan any * 15.161.86.71/32
+easyrule pass lan any * 15.184.139.182/32
+easyrule pass lan any * 15.188.202.64/32
+easyrule pass lan any * 15.188.240.172/32
+easyrule pass lan any * 15.188.243.248/32
+easyrule pass lan any * 16.162.136.62/32
+easyrule pass lan any * 16.163.153.45/32
+easyrule pass lan any * 18.102.80.189/32
+easyrule pass lan any * 18.130.113.168/32
+easyrule pass lan any * 18.139.52.173/32
+easyrule pass lan any * 18.163.59.106/32
+easyrule pass lan any * 18.195.155.52/32
+easyrule pass lan any * 18.200.120.237/32
+easyrule pass lan any * 18.229.28.50/32
+easyrule pass lan any * 18.229.36.120/32
+easyrule pass lan any * 20.62.248.141/32
+easyrule pass lan any * 20.83.144.189/32
+easyrule pass lan any * 34.208.32.189/32
+easyrule pass lan any * 35.152.76.8/32
+easyrule pass lan any * 35.154.93.182/32
+easyrule pass lan any * 35.176.195.46/32
+easyrule pass lan any * 35.177.43.250/32
+easyrule pass lan any * 40.76.107.170/32
+easyrule pass lan any * 43.218.5.202/32
+easyrule pass lan any * 52.9.13.199/32
+easyrule pass lan any * 52.9.139.134/32
+easyrule pass lan any * 52.35.61.232/32
+easyrule pass lan any * 52.55.56.26/32
+easyrule pass lan any * 52.60.189.53/32
+easyrule pass lan any * 52.67.95.251/32
+easyrule pass lan any * 52.89.221.151/32
+easyrule pass lan any * 52.192.175.207/32
+easyrule pass lan any * 54.177.155.33/32
+easyrule pass lan any * 63.34.100.178/32
+easyrule pass lan any * 63.35.33.198/32
+easyrule pass lan any * 99.79.87.237/32
+easyrule pass lan any * 107.21.25.247/32
+easyrule pass lan any * 108.137.133.223/32
+easyrule pass lan any * 108.137.188.57/32
+easyrule pass lan any * 157.241.36.106/32
+easyrule pass lan any * 157.241.93.102/32
+easyrule pass lan any * 13.244.85.86/32
+easyrule pass lan any * 13.244.188.203/32
+easyrule pass lan any * 13.245.200.254/32
+easyrule pass lan any * 16.162.136.62/32
+easyrule pass lan any * 16.163.153.45/32
+easyrule pass lan any * 18.163.59.106/32
+easyrule pass lan any * 13.114.211.96/32
+easyrule pass lan any * 13.115.46.213/32
+easyrule pass lan any * 52.192.175.207/32
+easyrule pass lan any * 3.36.177.119/32
+easyrule pass lan any * 13.209.118.42/32
+easyrule pass lan any * 13.209.230.111/32
+easyrule pass lan any * 13.208.126.217/32
+easyrule pass lan any * 13.208.133.55/32
+easyrule pass lan any * 13.208.255.200/32
+easyrule pass lan any * 13.126.169.175/32
+easyrule pass lan any * 13.234.54.8/32
+easyrule pass lan any * 35.154.93.182/32
+easyrule pass lan any * 3.1.36.99/32
+easyrule pass lan any * 3.1.219.207/32
+easyrule pass lan any * 18.139.52.173/32
+easyrule pass lan any * 13.54.169.48/32
+easyrule pass lan any * 13.236.246.161/32
+easyrule pass lan any * 13.238.14.57/32
+easyrule pass lan any * 43.218.5.202/32
+easyrule pass lan any * 108.137.133.223/32
+easyrule pass lan any * 108.137.188.57/32
+easyrule pass lan any * 3.96.7.126/32
+easyrule pass lan any * 52.60.189.53/32
+easyrule pass lan any * 99.79.87.237/32
+easyrule pass lan any * 3.120.223.25/32
+easyrule pass lan any * 3.121.24.234/32
+easyrule pass lan any * 18.195.155.52/32
+easyrule pass lan any * 13.48.150.244/32
+easyrule pass lan any * 13.48.239.118/32
+easyrule pass lan any * 13.48.254.37/32
+easyrule pass lan any * 15.161.86.71/32
+easyrule pass lan any * 18.102.80.189/32
+easyrule pass lan any * 35.152.76.8/32
+easyrule pass lan any * 18.200.120.237/32
+easyrule pass lan any * 63.34.100.178/32
+easyrule pass lan any * 63.35.33.198/32
+easyrule pass lan any * 18.130.113.168/32
+easyrule pass lan any * 35.176.195.46/32
+easyrule pass lan any * 35.177.43.250/32
+easyrule pass lan any * 15.188.202.64/32
+easyrule pass lan any * 15.188.240.172/32
+easyrule pass lan any * 15.188.243.248/32
+easyrule pass lan any * 15.184.139.182/32
+easyrule pass lan any * 157.241.36.106/32
+easyrule pass lan any * 157.241.93.102/32
+easyrule pass lan any * 18.229.28.50/32
+easyrule pass lan any * 18.229.36.120/32
+easyrule pass lan any * 52.67.95.251/32
+easyrule pass lan any * 3.92.150.182/32
+easyrule pass lan any * 52.55.56.26/32
+easyrule pass lan any * 107.21.25.247/32
+easyrule pass lan any * 3.18.172.189/32
+easyrule pass lan any * 3.18.188.104/32
+easyrule pass lan any * 3.18.197.0/32
+easyrule pass lan any * 52.9.13.199/32
+easyrule pass lan any * 52.9.139.134/32
+easyrule pass lan any * 54.177.155.33/32
+easyrule pass lan any * 34.208.32.189/32
+easyrule pass lan any * 52.35.61.232/32
+easyrule pass lan any * 52.89.221.151/32
+easyrule pass lan any * 20.62.248.141/32
+easyrule pass lan any * 20.83.144.189/32
+easyrule pass lan any * 40.76.107.170/32
+easyrule pass lan any * 34.149.66.128/26
+easyrule pass lan any * 34.149.203.90/32
+easyrule pass lan any * 34.0.225.0/24
+easyrule pass lan any * 34.69.237.0/24
+# ----- datadog allow bullshit -----
+
+easyrule block lan any * *
+
+pfctl -F states
