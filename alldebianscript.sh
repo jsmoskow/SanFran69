@@ -22,17 +22,17 @@ for user in $(cut -f1 -d: /etc/passwd); do
 done
 
 
-users=("BanditAlex" "MarshalJustice" "PrairiePioneer" "OutlawOutlook" "CalamityJane")
+#users=("BanditAlex" "MarshalJustice" "PrairiePioneer" "OutlawOutlook" "CalamityJane")
 
-for user in "${users[@]}"; do
-    sudo deluser "$user" sudo
-done
+#for user in "${users[@]}"; do
+#    sudo deluser "$user" sudo
+#done
 
-users=("BanditAlex" "MarshalJustice" "PrairiePioneer" "OutlawOutlook" "CalamityJane")
+#users=("BanditAlex" "MarshalJustice" "PrairiePioneer" "OutlawOutlook" "CalamityJane")
 
-for user in "${users[@]}"; do
-    sudo deluser "$user" sudo
-done
+#for user in "${users[@]}"; do
+#    sudo deluser "$user" sudo
+#done
 
 echo "Current sudo users:"
 getent group sudo | cut -d: -f4 | tr ',' '\n'
